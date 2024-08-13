@@ -68,6 +68,4 @@ Check out the live demo here: [Google Docs Clone](https://google-docs-clone-ochr
 - **Offline Mode**: Allowing users to edit documents offline and sync later.
 - **Version Control**: Implementing version history and rollback.
 
-## License
 
-This project is licensed under the MIT License.
