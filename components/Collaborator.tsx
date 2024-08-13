@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 import UserTypeSelector from './UserTypeSelector';
 import { Button } from './ui/button';
+import { removeCollaborator, updateDocumentAccess } from '@/lib/actions/room.actions';
 
 const Collaborator = ({
     roomId,
@@ -15,10 +16,14 @@ const Collaborator = ({
     const [loading, setLoading] = useState(false);
 
     const shareDocumentHandler = async (type: string) => {
-
+        setLoading(true);
+        await updateDocumentAccess({roomId, email,userType: type as UserType, updatedBy: user})
+        setLoading(false);
     }
     const removeCollaboratorHandler = async (emali: string) => {
-
+        setLoading(true);
+        await removeCollaborator({roomId, email});
+        setLoading(false);
     }
 
     return (
@@ -48,7 +53,7 @@ const Collaborator = ({
                     Owner
                 </p>
             ) : (
-                <div>
+                <div className='flex items-center'>
                     < UserTypeSelector
                         userType={userType as UserType}
                         setUserType={setUserType || 'viewer'}
